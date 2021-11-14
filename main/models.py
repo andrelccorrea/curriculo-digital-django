@@ -32,7 +32,7 @@ class UserProfile(models.Model):
 
     class Meta:
         verbose_name = 'Perfil de usuário'
-        verbose_name_plural = 'Perfis de usuário'
+        verbose_name_plural = 'Perfís de usuários'
 
     def __str__(self) -> str:
         return f'{self.user.first_name} {self.user.last_name}'
@@ -46,8 +46,8 @@ class ContactProfile(models.Model):
     message = models.TextField(verbose_name='Mensagem')
 
     class Meta:
-        verbose_name = 'Perfil de contato'
-        verbose_name_plural = 'Perfis de contato'
+        verbose_name = 'Contato'
+        verbose_name_plural = 'Contatos'
         ordering = ['timestamp']
 
     def __str__(self) -> str:
@@ -101,8 +101,8 @@ class Portfolio(models.Model):
     is_active = models.BooleanField(default=True)
 
     class Meta:
-        verbose_name = 'Portfolio'
-        verbose_name_plural = 'Portfolios'
+        verbose_name = 'Portfólio'
+        verbose_name_plural = 'Portfólios'
         ordering = ['name']
 
     def save(self, *args, **kwargs):
@@ -155,6 +155,10 @@ class Certificate(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True)
     description = models.CharField(max_length=500, blank=True, null=True)
     is_active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Certificado'
+        verbose_name_plural = 'Certificados'
 
     def __str__(self) -> str:
         return self.name
