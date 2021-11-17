@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
 from django.template.defaultfilters import slugify
 from ckeditor.fields import RichTextField
 
@@ -16,6 +17,7 @@ class Skill(models.Model):
     class Meta:
         verbose_name = 'Habilidade'
         verbose_name_plural = 'Habilidades'
+        ordering = ['-score']
 
     def __str__(self) -> str:
         return self.name
@@ -29,6 +31,8 @@ class UserProfile(models.Model):
     bio = models.TextField(blank=True, null=True)
     skills = models.ManyToManyField(Skill, blank=True)
     cv = models.FileField(blank=True, null=True, upload_to='cv')
+    linkedin = models.CharField(max_length=100, blank=True, null=True)
+    github = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Perfil de usuário'
