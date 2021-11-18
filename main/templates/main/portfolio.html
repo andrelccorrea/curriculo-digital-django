@@ -32,19 +32,21 @@ Start Content
 ================================= -->
 {% block content %}
 <section>
-  <div class="innerPageBannerCol">
+  {% comment %} <div class="innerPageBannerCol"> {% endcomment %}
     <div class="container">
-      <div class="row g-4 g-md-3  align-items-center">
-        <div class="col-md-6">
-          <div class="bannerContent">
-            <h1 class="xlTitle pb-md-3">See my recent projects below</h1>
+      {% comment %} <div class="row g-4 g-md-3  align-items-center">
+        <div class="col-md-6"> {% endcomment %}
+          <div class="bannerSection">
+            <h1 class="xlTitle pb-md-3">Projetos recentes</h1>
           </div>
-        </div>
-      </div>
+        {% comment %} </div>
+      </div> {% endcomment %}
     </div>
-  </div>
+  {% comment %} </div> {% endcomment %}
 </section>
-
+<div class="alert alert-danger" role="alert">
+  Em desenvolvimento
+</div>
 <section>
   <div class="lightBg">
     <div class="container">

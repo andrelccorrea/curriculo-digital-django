@@ -9,8 +9,8 @@ Start Footer
         {% comment %} <li><a href="javascript:void(0)"><img src="{% static 'images/fb.svg' %}" alt="..."></a></li> {% endcomment %}
         {% comment %} <li><a href="javascript:void(0)"><img src="{% static 'images/insta.svg' %}" alt="..."></a></li> {% endcomment %}
         {% comment %} <li><a href="javascript:void(0)"><img src="{% static 'images/twitter.svg' %}" alt="..."></a></li> {% endcomment %}
-        <li><a href="{{ me.userprofile.linkedin }}"><img src="{% static 'images/linkedin.svg' %}" alt="..."></a></li>
-        <li><a href="{{ me.userprofile.github }}"><img src="{% static 'images/github.svg' %}" alt="..."></a></li>
+        <li><a href="{{ me.userprofile.linkedin }}" target=”_blank”><img src="{% static 'images/linkedin.svg' %}" alt="..."></a></li>
+        <li><a href="{{ me.userprofile.github }}" target=”_blank”><img src="{% static 'images/github.svg' %}" alt="..."></a></li>
         </ul>
         <div class="copyrightCol">
         <p>André Corrêa ©{% now 'Y' %}.</p><p> Todos os direitos reservados.</p>
