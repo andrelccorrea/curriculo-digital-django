@@ -1,3 +1,3 @@
-# curriculo_digital_django
+# Currículo digital
 
 Currículo virtual com portfolio, criado com Django
