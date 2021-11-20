@@ -15,6 +15,7 @@ __pycache__/
 .Python
 staticfiles/
 media/
+mediafiles/
 build/
 develop-eggs/
 downloads/
