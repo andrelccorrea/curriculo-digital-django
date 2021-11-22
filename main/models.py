@@ -97,7 +97,7 @@ class Media(models.Model):
 class Portfolio(models.Model):
 
     date = models.DateTimeField(blank=True, null=True)
-    name = models.CharField(max_length=200, blank=True, null=True)
+    name = models.CharField(max_length=200, blank=False, null=False)
     description = models.CharField(max_length=500, blank=True, null=True)
     body = RichTextField(blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)
@@ -110,8 +110,8 @@ class Portfolio(models.Model):
         ordering = ['name']
 
     def save(self, *args, **kwargs):
-        if self.id:
-            self.slug = slugify(self.name)
+        # if self.id:
+        self.slug = slugify(self.name)
         super(Portfolio, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
@@ -127,7 +127,7 @@ class Blog(models.Model):
     author = models.CharField(verbose_name='Autor',
                               max_length=200, blank=True, null=True)
     name = models.CharField(verbose_name='Nome',
-                            max_length=200, blank=True, null=True)
+                            max_length=200, blank=False, null=False)
     description = models.CharField(
         verbose_name='Descrição', max_length=500, blank=True, null=True)
     body = RichTextField(blank=True, null=True)
@@ -141,8 +141,8 @@ class Blog(models.Model):
         ordering = ['timestamp']
 
     def save(self, *args, **kwargs):
-        if self.id:
-            self.slug = slugify(self.name)
+        # if self.id:
+        self.slug = slugify(self.name)
         super(Blog, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
