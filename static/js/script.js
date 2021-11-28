@@ -4,7 +4,7 @@ $('.navToggle').on('click', function (e) {
 });
 
 
-$(window).scroll(function(){
+$(window).scroll(function () {
   if ($(this).scrollTop() > 10) {
     $('body').addClass('fixedHeader');
   } else {
@@ -31,6 +31,33 @@ var swiper = new Swiper(".certificatesSlider", {
   navigation: {
     nextEl: ".cert-swiper-button-next",
     prevEl: ".cert-swiper-button-prev",
+  },
+  breakpoints: {
+    640: {
+      slidesPerView: 2,
+      spaceBetween: 16,
+    },
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 16,
+    },
+    1024: {
+      slidesPerView: 2,
+      spaceBetween: 16,
+    },
+  },
+});
+
+var swiper = new Swiper(".portfolioSlider", {
+  slidesPerView: 1,
+  spaceBetween: 16,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".port-swiper-button-next",
+    prevEl: ".port-swiper-button-prev",
   },
   breakpoints: {
     640: {

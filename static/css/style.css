@@ -88,7 +88,7 @@ a, .btn {
 
 /* titles */
 .xlTitle {
-  font-size: 44px;
+  font-size: 40px;
   line-height: 1.3;
   font-weight: var(--bold);
   font-family: var(--titleFont)
@@ -486,7 +486,7 @@ body.navToggleActive {
 
 /* portfolio page */
 .innerPageBannerCol {
-	padding: 180px 0 150px;
+	padding: 150px 0 60px;
 }
 .portfolioContentMain {
   position: relative;
@@ -497,7 +497,7 @@ body.navToggleActive {
   height: 100%;
 }
 .pImg {
-  width: 100%;
+  width: 90%;
 }
 
 .portfolioRow .pColMain:nth-child(2n-1) .pCol {

@@ -34,7 +34,7 @@ Start Content
 <section>
   <div class="bannerSection">
     <div class="container">
-      <div class="row g-4 g-md-3  align-items-center">
+      <div class="row g-4 g-md-3 align-items-center">
         <div class="col-md-auto order-md-last">
           <div class="bannerUserImg">
             <img src="{{ me.userprofile.avatar.url }}" alt="{{ me.first_name|title }} {{ me.last_name|title }} avatar">
@@ -44,7 +44,8 @@ Start Content
           <div class="bannerContent">
             {% comment %} Título {% endcomment %}
             <h1 class="xlTitle pb-3">
-              Olá, meu nome é {{ me.first_name|title }}, <br> sou {{ me.userprofile.title }} 
+              Olá! <br>Meu nome é {{ me.first_name|title }} {{ me.last_name|title }},<br>
+            {{ me.userprofile.title }} 
             </h1>
             {% comment %} Biografia {% endcomment %}
             <p>{{ me.userprofile.bio|safe }}</p>
@@ -66,7 +67,45 @@ Start Content
 </section>
 
 <section>
-  <div class="sectionSpace pt-0">
+  <div class="sectionSpaceSm lightBg">
+    <div class="container">
+      <div class="row pb-3">
+        <div class="col">
+          <h4 class="smText regular">Projetos recentes</h4>
+        </div>
+      </div>
+      <div class="sliderOuter">
+        <div class="swiper portfolioSlider">
+          <div class="swiper-wrapper">
+            {% for p in portfolio %}
+            {% if p.is_active %}
+            <div class="swiper-slide">
+              <a href="{% url 'main:portfolio' slug=p.slug %}">
+                <div class="cardStyle1">
+                  <h4 class="mdTitle cs1Title p-0 m-0">
+                    {{ p.name }}
+                  </h4>
+                  <h6>
+                    <p>{{ p.description }}</p>
+                  </h6>
+                  <p>{{ p.body|safe }}</p>
+                </div>
+              </a>
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>            
+        <div class="port-swiper-button-next swiper-button-next swiperBtnStyle"></div>
+        <div class="port-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+        <div class="swiper-pagination swiperPaginationStyle posInitial"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sectionSpace">
     <div class="container">
       <div class="row">
         <div class="col-md-auto">
@@ -120,7 +159,6 @@ Start Content
         <div class="col">
           <h4 class="smText regular">Certificados</h4>
         </div>
-
       </div>
       <div class="sliderOuter">
         <div class="swiper certificatesSlider">
@@ -129,24 +167,23 @@ Start Content
             {% if c.is_active %}
             <div class="swiper-slide">
               <a href="{{ c.url }}" target=”_blank”>
-              <div class="cardStyle1">
-                <h4 class="mdTitle cs1Title p-0 m-0">
-                  {{ c.title }}
-                </h4>
-                <h6>
-                  <p>{{ c.description }}</p>
-                </h6>
-                <p>Emitido por <b>{{ c.issuer }}</b></p>
-                <ul class="cardOptionCol">
-                  <li>{{ c.issue_date }}</li>
-                  <li>{{ c.expiration_date }}</li>
-                </ul>
-              </div>
-               </a>
+                <div class="cardStyle1 lightBg">
+                  <h4 class="mdTitle cs1Title p-0 m-0">
+                    {{ c.title }}
+                  </h4>
+                  <h6>
+                    <p>{{ c.description }}</p>
+                  </h6>
+                  <p>Emitido por <b>{{ c.issuer }}</b></p>
+                  <ul class="cardOptionCol">
+                    <li>{{ c.issue_date }}</li>
+                    <li>{{ c.expiration_date }}</li>
+                  </ul>
+                </div>
+              </a>
             </div>
             {% endif %}
             {% endfor %}
-            
           </div>
         </div>            
         <div class="cert-swiper-button-next swiper-button-next swiperBtnStyle"></div>
@@ -156,76 +193,6 @@ Start Content
     </div>
   </div>
 </section>
-
-<section>
-  <div class="sectionSpace">
-    <div class="container">
-      <div class="portfolioCol">
-        <div class="row pb-3">
-          <div class="col">
-            <h4 class="smText regular">Projetos</h4>
-          </div>
-          <div class="col-auto">
-            <a href="{% url 'main:portfolios' %}" class="simpleLink">Ver todos</a>
-          </div>
-        </div>
-        {% for p in portfolio %}
-        {% if p.is_active %}
-        <div class="portfolioCard">
-          <div class="row g-4 align-items-center">
-            <div class="col-md-auto">
-              <div class="portfolioImgCol">
-                <a href="{% url 'main:portfolio' slug=p.slug %}"><img src="{{ p.image.url }}" alt="..."></a>
-              </div>
-            </div>
-            <div class="col-md">
-              <div class="portfolioContentCol">
-                <h4 class="lgTitle"><a href="{% url 'main:portfolio' slug=p.slug %}">{{ p.name }}</a></h4>
-                <ul class="portfolioOption">
-                  <li><span class="dateLbl">{{ p.date.year }}</span></li>
-                </ul>
-                <p>{{ p.description }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</section>
-
-{% comment %} <section>
-  <div class="sectionSpaceSm lightBg">
-    <div class="container">
-      <div class="row pb-3">
-        <div class="col">
-          <h4 class="smText regular">Postagens recentes</h4>
-        </div>
-        <div class="col-auto">
-          <a href="{% url 'main:blogs' %}" class="simpleLink">Ver todas</a>
-        </div>
-      </div>
-      <div class="row g-3">
-      {% for b in blogs %}
-      {% if b.is_active %}
-        <div class="col-lg-6">
-          <div class="cardStyle1">
-            <h4 class="mdTitle cs1Title"><a href="{% url 'main:blog' slug=b.slug %}">{{ b.name }}</a></h4>
-            <ul class="cardOptionCol">
-              <li>{{ b.timestamp.date }}</li>
-              <li>{{ b.author }}</li>
-            </ul>
-            <p>{{ b.description }}</p>
-          </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</section> {% endcomment %}
 {% endblock %}
 <!-- ================================
 End Content

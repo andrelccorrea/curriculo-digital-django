@@ -19,7 +19,6 @@ Start Navigation Bar
             <div class="navCol">
                 <ul>
                 <li><a href="{% url 'main:home' %}">Home</a></li>
-                <li><a href="{% url 'main:portfolios' %}">Portfolio</a></li>
                 <li><a href="{% url 'main:contact' %}">Contato</a></li>
                 <li class="socialCol"><a href="{{ me.userprofile.linkedin }}" target=”_blank”><img src="{% static 'images/linkedin.svg' %}" alt="..."></a></li>
                 <li class="socialCol"><a href="{{ me.userprofile.github }}" target=”_blank”><img src="{% static 'images/github.svg' %}" alt="..."></a></li>

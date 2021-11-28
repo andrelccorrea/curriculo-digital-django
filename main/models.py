@@ -58,24 +58,6 @@ class ContactProfile(models.Model):
         return f'{self.name}'
 
 
-class Testimonial(models.Model):
-
-    thumbnail = models.ImageField(
-        blank=True, null=True, upload_to='testimonials')
-    name = models.CharField(max_length=200, blank=True, null=True)
-    role = models.CharField(max_length=200, blank=True, null=True)
-    quote = models.CharField(max_length=500, blank=True, null=True)
-    is_active = models.BooleanField(default=True)
-
-    class Meta:
-        verbose_name = 'Depoimento'
-        verbose_name_plural = 'Depoimentos'
-        ordering = ['name']
-
-    def __str__(self) -> str:
-        return self.name
-
-
 class Media(models.Model):
 
     image = models.ImageField(blank=True, null=True, upload_to='media')
@@ -119,37 +101,6 @@ class Portfolio(models.Model):
 
     def get_absolute_url(self):
         return f'/portfolio/{ self.slug }'
-
-
-class Blog(models.Model):
-
-    timestamp = models.DateTimeField(auto_now_add=True)
-    author = models.CharField(verbose_name='Autor',
-                              max_length=200, blank=True, null=True)
-    name = models.CharField(verbose_name='Nome',
-                            max_length=200, blank=False, null=False)
-    description = models.CharField(
-        verbose_name='Descrição', max_length=500, blank=True, null=True)
-    body = RichTextField(blank=True, null=True)
-    slug = models.SlugField(blank=True, null=True)
-    image = models.ImageField(blank=True, null=True, upload_to='blog')
-    is_active = models.BooleanField(default=True)
-
-    class Meta:
-        verbose_name = 'Blog'
-        verbose_name_plural = 'Blogs'
-        ordering = ['timestamp']
-
-    def save(self, *args, **kwargs):
-        # if self.id:
-        self.slug = slugify(self.name)
-        super(Blog, self).save(*args, **kwargs)
-
-    def __str__(self) -> str:
-        return self.name
-
-    def get_absolute_url(self):
-        return f'/blog/{ self.slug }'
 
 
 class Certificate(models.Model):
