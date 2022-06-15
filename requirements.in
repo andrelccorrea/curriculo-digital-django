@@ -4,6 +4,7 @@ autopep8
 click
 Django
 django-ckeditor
+django-environ
 django-js-asset
 isort
 lazy-object-proxy
