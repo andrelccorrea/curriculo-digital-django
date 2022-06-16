@@ -37,22 +37,34 @@ Start Content
       <div class="row g-4 g-md-3 align-items-center">
         <div class="col-md-auto order-md-last">
           <div class="bannerUserImg">
-            <img src="{{ me.userprofile.avatar.url }}" alt="{{ me.first_name|title }} {{ me.last_name|title }} avatar">
+            
+            {% if me.userprofile.avatar %}
+              <img src="{{ me.userprofile.avatar.url }}" alt="{{ me.first_name|title }} {{ me.last_name|title }} avatar">
+            {% else %}
+              <img src="" alt="{{ me.first_name|title }} {{ me.last_name|title }} avatar">
+            {% endif %}
+              
           </div>
         </div>
         <div class="col-md">
           <div class="bannerContent">
-            {% comment %} Título {% endcomment %}
+            <!-- Título -->
             <h1 class="xlTitle pb-3">
               Olá! <br>Meu nome é {{ me.first_name|title }} {{ me.last_name|title }},<br>
-            {{ me.userprofile.title }} 
+              {{ me.userprofile.title|default_if_none:"TÍTULO" }}
             </h1>
-            {% comment %} Biografia {% endcomment %}
+            <!-- Biografia -->
             <p>{{ me.userprofile.bio|safe }}</p>
             <div class="bannerBtnCol">
               <div class="row">
                 <div class="col-auto">
-                  <a download href="{{ me.userprofile.cv.url }}" class="btn btnPrimary">Baixar currículo</a>
+                  
+                  {% if me.userprofile.cv %}
+                    <a download href="{{ me.userprofile.cv.url }}" class="btn btnPrimary">Baixar currículo</a>
+                  {% else %}
+                    <a href="" class="btn btnDisabled">Baixar currículo</a>
+                  {% endif %}
+                    
                 </div>
                 <div class="col-auto">
                   <a href="{% url 'main:contact' %}" class="btn btnOutline">Contato</a>
@@ -108,45 +120,17 @@ Start Content
   <div class="sectionSpace">
     <div class="container">
       <div class="row">
-        <div class="col-md-auto">
-          <div class="keySkillCol">
-            <h2 class="smTitle pb-3">Habilidades chave</h2>
-            {% for sk in me.userprofile.skills.all %}
+        <h2 class="smText regular mb-5">Habilidades chave</h2>
+          {% for sk in me.userprofile.skills.all %}
             {% if sk.is_key_skill %}
-            <div class="keySkillCard mb-2">
-              {% if sk.image %}
-                <img src="{{ sk.image.url }}" class="float-start me-2" alt="...">
-              {% endif %}
-              <span class="ksText">{{ sk.name }}</span>
-            </div>
-            {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-        <div class="col-md">
-          <h4 class="smTitle pb-3">Níveis</h4>
-          <div class="progressCol">
-            <div class="progressCard">
-              {% for sk in me.userprofile.skills.all %}
-              {% if sk.is_key_skill %}
-              <div class="progressCol">
-                <span class="progressLbl">{{ sk.name }}</span>
-                <div class="row g-2 align-items-center">
-                  <div class="col">
-                    <div class="progress progressStyle">
-                      <div class="progress-bar" role="progressbar" style="width: {{ sk.score }}%" aria-valuenow="{{ sk.score }}" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="col-auto">
-                    <span class="pLbl">{{ sk.score }}%</span>
-                  </div>
-                </div>
+              <div class="col">
+                {% if sk.image %}
+                  <img src="{{ sk.image.url }}" class="float-start me-2" alt="...">
+                {% endif %}
+                <span class="ksText">{{ sk.name }}</span>
               </div>
-              {% endif %}
-              {% endfor %}
-            </div>
-          </div>
-        </div>
+            {% endif %}
+          {% endfor %}
       </div>
     </div>
   </div>
