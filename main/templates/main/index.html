@@ -120,12 +120,12 @@ Start Content
   <div class="sectionSpace">
     <div class="container">
       <div class="row">
-        <h2 class="smText regular mb-5">Habilidades chave</h2>
+        <h2 class="smText regular mb-5">Hard Skills</h2>
           {% for sk in me.userprofile.skills.all %}
             {% if sk.is_key_skill %}
               <div class="col">
                 {% if sk.image %}
-                  <img src="{{ sk.image.url }}" class="float-start me-2" alt="...">
+                  <img src="{{ sk.image.url }}" class="float-start me-2" alt="..." width="30" height="30">
                 {% endif %}
                 <span class="ksText">{{ sk.name }}</span>
               </div>
@@ -138,6 +138,26 @@ Start Content
 
 <section>
   <div class="sectionSpaceSm lightBg">
+    <div class="container">
+      <div class="row">
+        <h2 class="smText regular mb-5">Soft Skills</h2>
+          {% for sk in me.userprofile.soft_skills.all %}
+            {% if sk.is_key_skill %}
+              <div class="col">
+                {% if sk.image %}
+                  <img src="{{ sk.image.url }}" class="float-start me-2" alt="..." width="30" height="30">
+                {% endif %}
+                <span class="ksText">{{ sk.name }}</span>
+              </div>
+            {% endif %}
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sectionSpace">
     <div class="container">
       <div class="row pb-3">
         <div class="col">

@@ -31,3 +31,8 @@ class CertificateAdmin(admin.ModelAdmin):
 @admin.register(Skill)
 class SkillAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'score')
+
+
+@admin.register(SoftSkill)
+class SoftSkillAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'score')
