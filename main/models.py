@@ -23,6 +23,24 @@ class Skill(models.Model):
         return self.name
 
 
+class SoftSkill(models.Model):
+
+    name = models.CharField(verbose_name='Nome',
+                            max_length=20, blank=True, null=True)
+    score = models.IntegerField(
+        verbose_name='Nível', default=80, blank=True, null=True)
+    image = models.FileField(blank=True, null=True, upload_to='skills')
+    is_key_skill = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = 'Habilidade interpessoal'
+        verbose_name_plural = 'Habilidades interpessoais'
+        ordering = ['-score']
+
+    def __str__(self) -> str:
+        return self.name
+
+
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
