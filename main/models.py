@@ -48,6 +48,7 @@ class UserProfile(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True)
     bio = models.TextField(blank=True, null=True)
     skills = models.ManyToManyField(Skill, blank=True)
+    soft_skills = models.ManyToManyField(SoftSkill, blank=True)
     cv = models.FileField(blank=True, null=True, upload_to='cv')
     linkedin = models.CharField(max_length=100, blank=True, null=True)
     github = models.CharField(max_length=100, blank=True, null=True)
