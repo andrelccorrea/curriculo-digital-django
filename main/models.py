@@ -15,8 +15,8 @@ class Skill(models.Model):
     is_key_skill = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name = 'Habilidade'
-        verbose_name_plural = 'Habilidades'
+        verbose_name = 'Habilidade Técnica'
+        verbose_name_plural = 'Habilidades Técnicas'
         ordering = ['-score']
 
     def __str__(self) -> str:
